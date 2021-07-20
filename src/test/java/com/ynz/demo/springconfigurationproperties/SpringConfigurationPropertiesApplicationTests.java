@@ -8,8 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @RequiredArgsConstructor
@@ -40,6 +42,17 @@ class SpringConfigurationPropertiesApplicationTests {
                 () -> assertThat(clientHostInfo.getHostName(), is(expectedHost)),
                 () -> assertThat(clientHostInfo.getPort(), is(expectedPort)),
                 () -> assertThat(clientHostInfo.getFrom(), is(expectedFrom))
+        );
+    }
+
+    @Test
+    void serverInfoBean_ShouldBeCooked() {
+        ServerInfo serverInfo = applicationContext.getBean(ServerInfo.class);
+        assertThat(serverInfo, Matchers.notNullValue());
+        assertAll(
+                () -> assertNotNull(serverInfo),
+                () -> assertThat(serverInfo.getPorts(), hasSize(4)),
+                () -> assertThat(serverInfo.getName(), is("www.xyz.com"))
         );
     }
 
