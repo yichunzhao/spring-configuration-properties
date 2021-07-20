@@ -1,8 +1,14 @@
 # spring-configuration-properties
-Binding application properties to a Bean created in the ApplicationContext.
 
+Spring Boot may include externalized configuration and easily access properties defined in properties files. 
+
+It is able of binding application properties to a POJO and then instantiate it in an ApplicationContext.
+
+@ConfigurationProperties can be applied on a class(POJO) or method level(Bean method). 
 @ConfigurationProperties can be applied on a class or method level. 
 
+## Auto-scanned
+As of Spring Boot 2.2, Spring finds and registers @ConfigurationProperties classes via a classpath scanning, without a decorator @Component; it still needs to use @EnableConfigurationProperties combined with @Configuration to enable the auto-process. 
 ## Auto-scanned
 As of Spring Boot 2.2, Spring finds and registers @ConfigurationProperties classes via a classpath scanning; 
 it needs to use @EnableConfigurationProperties and combined with @Configuration to enable this auto-process. 
