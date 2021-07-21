@@ -8,11 +8,9 @@ It is able of binding application properties to a POJO and then instantiate it i
 @ConfigurationProperties can be applied on a class or method level. 
 
 ## Auto-scanned
-As of Spring Boot 2.2, Spring finds and registers @ConfigurationProperties classes via a classpath scanning; 
-it needs to use @EnableConfigurationProperties and combined with @Configuration to enable this auto-process. 
-Note that: we must indicate the target POJO by @EnableConfigurationProperties({ClientHostInfo.class}), otherwise
-"org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 
-'com.ynz.demo.springconfigurationproperties.ClientHostInfo' available"
+Since Spring Boot 2.2, Spring finds and registers @ConfigurationProperties classes via a classpath scanning, but it needs @EnableConfigurationProperties within a @Configuration to enable this auto-process. 
+
+Note that: we must register the binding POJO in the bean factory by @EnableConfigurationProperties({ClientHostInfo.class}), otherwise leading to an execption: "org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.ynz.demo.springconfigurationproperties.ClientHostInfo' available"
 
 ````
 @SpringBootApplication
